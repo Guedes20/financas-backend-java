@@ -30,53 +30,51 @@ public class UsuarioRepositoryTest {
 
 	@Test
 	public void deveVerificarAExistenciaDeUmEmail() {
-		// cenário
+		/* Cenario */
 		Usuario usuario = Usuario.builder().nome("Fulano").email("fulano@gmail.com").build();
 		repository.save(usuario);
-		// ação
+		/* Ação */
 		boolean result = repository.existsByEmail("fulano@gmail.com");
-		// verificação
+		/* Verificação */
 		Assertions.assertThat(result).isTrue();
 	}
 
 	@Test
 	public void deveRetornarFalsoQuandoNaoHouverUsuarioCadastradoComOEmail() {
-		// cenario
+		/* Cenario */
 		repository.deleteAll();
-		// ação
+		/* Ação */
 		boolean result = repository.existsByEmail("fulano@gmail.com");
-		// verificação
+		/* Verificação */
 		Assertions.assertThat(result).isFalse();
 	}
 
 	@Test
 	public void devePersistirUmUsuarioNaBaseDeDados() {
-		// cenario
+		/* Cenario */
 		Usuario usuario = criaUsuario();
-		// ação
+		/* Ação */
 		Usuario usuarioSalvo = repository.save(usuario);
-		// verificação
+		/* Verificação */
 		Assertions.assertThat(usuarioSalvo.getId()).isNotNull();
 	}
 
 	@Test
 	public void deveBuscarUmUsuarioPorEmail() {
-		// cenario
+		/* Cenario */
 		Usuario usuario = criaUsuario();
 		entityManager.persist(usuario);
-		// ação
+		/* Ação */
 		Optional<Usuario> result = repository.findByEmail("usuario@gmail.com");
-		// verificação
+		/* Verificação */
 		Assertions.assertThat(result.isPresent()).isTrue();
 	}
 
 	@Test
 	public void deveRetornarVazioAoBuscarUmUsuarioPorEmailQuandoNaoExisteNaBase() {
-		// cenario
-
-		// ação
+		/* Ação */
 		Optional<Usuario> result = repository.findByEmail("usuario@gmail.com");
-		// verificação
+		/* Verificação */
 		Assertions.assertThat(result.isPresent()).isFalse();
 	}
 
