@@ -1,8 +1,10 @@
 package br.com.minhasfinancas.serivce;
 
 import java.util.List;
+import java.util.Optional;
 
 import br.com.minhasfinancas.entity.Lancamento;
+import br.com.minhasfinancas.entity.Usuario;
 import br.com.minhasfinancas.enuns.StatusLancamento;
 
 public interface LancamentoService {
@@ -13,5 +15,6 @@ public interface LancamentoService {
 	List<Lancamento> buscar(Lancamento lancamento);
 	Lancamento atualizarStatus(Lancamento lancamento, StatusLancamento status);
     void validar(Lancamento lancamento);
+	Optional<Lancamento> obterPorId(Long id);
 	
 }
