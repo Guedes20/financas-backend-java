@@ -34,8 +34,9 @@ public class LancamentoController {
 
 	private UsuarioService usuarioService;
 
-	public LancamentoController(LancamentoService lancamentoService) {
+	public LancamentoController(LancamentoService lancamentoService , UsuarioService usuarioService) {
 		this.lancamentoService = lancamentoService;
+		this.usuarioService = usuarioService;
 	}
 
 	@PostMapping
