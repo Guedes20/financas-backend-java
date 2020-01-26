@@ -1,7 +1,9 @@
 package br.com.minhasfinancas.controller;
 
+import org.apache.catalina.connector.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -55,6 +57,14 @@ public class LancamentoController {
 		}).orElseGet(() -> new ResponseEntity("Lancamento não encontrado na base de Dados.", HttpStatus.BAD_REQUEST));
 	}
 
+	@DeleteMapping
+	 public ResponseEntity atualizar(@PathVariable("id") Long id) {
+		return lancamentoService.obterPorId(id).map(entidade ->{
+             lancamentoService.deletar(entidade);
+             return new ResponseEntity(HttpStatus.NO_CONTENT);
+ 		}).orElseGet(() -> new ResponseEntity("Lancamento não encontrado na base de Dados.", HttpStatus.BAD_REQUEST));
+	}
+	
 	private Lancamento converter(LancamentoDTO dto) {
 		Lancamento l = new Lancamento();
 		l.setAno(dto.getAno());
