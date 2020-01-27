@@ -12,19 +12,18 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.minhasfinancas.dto.UsuarioDTO;
 import br.com.minhasfinancas.entity.Usuario;
+import br.com.minhasfinancas.serivce.LancamentoService;
 import br.com.minhasfinancas.serivce.UsuarioService;
 import br.com.minhasfinancas.serivce.exeception.ErroAutenticacao;
 import br.com.minhasfinancas.serivce.exeception.RegraNegocioException;
+import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("/api/usuarios")
+@RequiredArgsConstructor
 public class UsuarioController {
 
 	private UsuarioService service;
-
-	public UsuarioController(UsuarioService service) {
-		this.service = service;
-	}
 
 	@PostMapping("/autenticar")
 	public ResponseEntity autenticar(@RequestBody UsuarioDTO dto) {

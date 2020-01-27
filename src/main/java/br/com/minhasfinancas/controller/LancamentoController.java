@@ -25,19 +25,17 @@ import br.com.minhasfinancas.enuns.TipoLancamento;
 import br.com.minhasfinancas.serivce.LancamentoService;
 import br.com.minhasfinancas.serivce.UsuarioService;
 import br.com.minhasfinancas.serivce.exeception.RegraNegocioException;
+import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("/api/lancamentos")
+@RequiredArgsConstructor
 public class LancamentoController {
 
-	private LancamentoService lancamentoService;
+	private final LancamentoService lancamentoService;
 
-	private UsuarioService usuarioService;
+	private final UsuarioService usuarioService;
 
-	public LancamentoController(LancamentoService lancamentoService , UsuarioService usuarioService) {
-		this.lancamentoService = lancamentoService;
-		this.usuarioService = usuarioService;
-	}
 
 	@PostMapping
 	public ResponseEntity salvar(@RequestBody LancamentoDTO dto) {
