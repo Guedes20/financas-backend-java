@@ -10,22 +10,19 @@ import org.springframework.transaction.annotation.Transactional;
 
 import br.com.minhasfinancas.entity.Usuario;
 import br.com.minhasfinancas.model.repository.UsuarioRepository;
+import br.com.minhasfinancas.serivce.LancamentoService;
 import br.com.minhasfinancas.serivce.UsuarioService;
 import br.com.minhasfinancas.serivce.exeception.ErroAutenticacao;
 import br.com.minhasfinancas.serivce.exeception.RegraNegocioException;
+import lombok.RequiredArgsConstructor;
 
 @Service
+@RequiredArgsConstructor
 public class UsuarioServiceImpl implements UsuarioService {
 
 	
-	private UsuarioRepository usuarioRepository;
+	private final UsuarioRepository usuarioRepository;
 	
-	//@Autowired
-	public UsuarioServiceImpl(UsuarioRepository usuarioRepository) {
-		super();
-		this.usuarioRepository = usuarioRepository;
-	}
-
 	@Override
 	public Usuario autenticar(String email, String senha) {
 		Optional<Usuario> usuario = usuarioRepository.findByEmail(email);
