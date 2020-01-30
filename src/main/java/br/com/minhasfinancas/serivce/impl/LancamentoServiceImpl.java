@@ -90,7 +90,6 @@ public class LancamentoServiceImpl implements LancamentoService {
 
 	@Override
 	public Optional<Lancamento> obterPorId(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		return lancamentoRepository.findById(id);
 	}
 }
