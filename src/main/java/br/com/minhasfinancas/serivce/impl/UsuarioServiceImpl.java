@@ -20,9 +20,8 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class UsuarioServiceImpl implements UsuarioService {
 
-	
 	private final UsuarioRepository usuarioRepository;
-	
+
 	@Override
 	public Usuario autenticar(String email, String senha) {
 		Optional<Usuario> usuario = usuarioRepository.findByEmail(email);

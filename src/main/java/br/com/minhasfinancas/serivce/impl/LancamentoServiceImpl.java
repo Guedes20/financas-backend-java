@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import br.com.minhasfinancas.entity.Lancamento;
 import br.com.minhasfinancas.enuns.StatusLancamento;
+import br.com.minhasfinancas.enuns.TipoLancamento;
 import br.com.minhasfinancas.model.repository.LancamentoRepository;
 import br.com.minhasfinancas.model.repository.UsuarioRepository;
 import br.com.minhasfinancas.serivce.LancamentoService;
@@ -91,5 +92,24 @@ public class LancamentoServiceImpl implements LancamentoService {
 	@Override
 	public Optional<Lancamento> obterPorId(Long id) {
 		return lancamentoRepository.findById(id);
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public BigDecimal obterSaldoPorUsuario(Long id) {
+		BigDecimal receitas = lancamentoRepository.obterSaldoPorTipoLancamentoEUsuario(id,
+				TipoLancamento.RECEITA.name());
+		BigDecimal depesas = lancamentoRepository.obterSaldoPorTipoLancamentoEUsuario(id,
+				TipoLancamento.DESPESA.name());
+
+		if (receitas == null) {
+			receitas = BigDecimal.ZERO;
+		}
+
+		if (depesas == null) {
+			depesas = BigDecimal.ZERO;
+		}
+
+		return receitas.subtract(depesas);
 	}
 }
