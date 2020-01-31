@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Optional;
 
 import br.com.minhasfinancas.entity.Lancamento;
-import br.com.minhasfinancas.entity.Usuario;
 import br.com.minhasfinancas.enuns.StatusLancamento;
 
 public interface LancamentoService {
