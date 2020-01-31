@@ -15,7 +15,6 @@ import br.com.minhasfinancas.entity.Lancamento;
 import br.com.minhasfinancas.enuns.StatusLancamento;
 import br.com.minhasfinancas.enuns.TipoLancamento;
 import br.com.minhasfinancas.model.repository.LancamentoRepository;
-import br.com.minhasfinancas.model.repository.UsuarioRepository;
 import br.com.minhasfinancas.serivce.LancamentoService;
 import br.com.minhasfinancas.serivce.exeception.RegraNegocioException;
 import lombok.RequiredArgsConstructor;

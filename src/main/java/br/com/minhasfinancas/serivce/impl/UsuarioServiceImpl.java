@@ -1,16 +1,12 @@
 package br.com.minhasfinancas.serivce.impl;
 
-import java.lang.module.FindException;
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.reactive.ReactiveCrudRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.minhasfinancas.entity.Usuario;
 import br.com.minhasfinancas.model.repository.UsuarioRepository;
-import br.com.minhasfinancas.serivce.LancamentoService;
 import br.com.minhasfinancas.serivce.UsuarioService;
 import br.com.minhasfinancas.serivce.exeception.ErroAutenticacao;
 import br.com.minhasfinancas.serivce.exeception.RegraNegocioException;
