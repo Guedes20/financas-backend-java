@@ -126,6 +126,8 @@ public class LancamentoController {
 
 		if (dto.getStatus() != null) {
 			l.setStatus(StatusLancamento.valueOf(dto.getStatus()));
+		}else {
+			l.setStatus(StatusLancamento.PENDENTE);
 		}
 
 		if (dto.getTipo() != null) {
