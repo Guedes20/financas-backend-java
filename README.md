@@ -1,6 +1,6 @@
 <h3> Finanças </h3>
 
-- Projeto em desenvolvimento utilizando SpringBoot, Java 8, Rest, PostgreSql e Heroku.
+- Projeto em desenvolvimento utilizando SpringBoot, Java 8, Rest, PostgreSql, Junit, Mockito e Heroku.
 
 
 <h4> Exemplo: </h4>
