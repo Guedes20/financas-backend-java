@@ -22,7 +22,7 @@ import br.com.minhasfinancas.serivce.impl.UsuarioServiceImpl;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
-public class UsuarioServiceTeste {
+public class UsuarioServiceTest {
 
 	@SpyBean
 	UsuarioServiceImpl service;
