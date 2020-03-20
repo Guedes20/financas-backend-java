@@ -115,6 +115,7 @@ public class LancamentoController {
 	
 	@GetMapping("{id}")
 	public ResponseEntity obterLancamento(@PathVariable("id") Long id) {
+		System.out.println(id);
 		return lancamentoService.obterPorId(id).map(lancamento -> new ResponseEntity(converter(lancamento), HttpStatus.OK))
 				.orElseGet(() -> new ResponseEntity(HttpStatus.NOT_FOUND));
 	}

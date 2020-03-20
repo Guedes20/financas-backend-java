@@ -50,14 +50,14 @@ public class UsuarioController {
 	}
 
 	@GetMapping("{id}/saldo")
-	public ResponseEntity obterSaldo(@PathVariable("id") Long id) {
-		Optional<Usuario> usuario = usuarioService.obterPorId(id);
+	public ResponseEntity obterSaldo(@PathVariable("id") String id) {
+		Optional<Usuario> usuario = usuarioService.obterPorId(Long.valueOf(id));
 		
 		if(!usuario.isPresent()) {
 			return new ResponseEntity( HttpStatus.NOT_FOUND);
 		}
 		
-		BigDecimal saldo = lancamentoService.obterSaldoPorUsuario(id);
+		BigDecimal saldo = lancamentoService.obterSaldoPorUsuario(Long.valueOf(id));
 		return ResponseEntity.ok(saldo);
 	}
 
