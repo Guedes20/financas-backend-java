@@ -10,5 +10,6 @@ public interface UsuarioService {
 	Usuario salvarUsuario(Usuario usuario);	
 	void validarEmail(String email);
 	Optional<Usuario> obterPorId(Long id);
+	Usuario obterPorEmail(String email);
 	
 }

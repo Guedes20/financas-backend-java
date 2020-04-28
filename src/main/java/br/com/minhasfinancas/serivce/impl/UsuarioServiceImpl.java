@@ -53,4 +53,10 @@ public class UsuarioServiceImpl implements UsuarioService {
 		return usuarioRepository.findById(id);
 	}
 
+	@Override
+	public Usuario obterPorEmail(String email) {
+	  return usuarioRepository.findByEmail(email).orElseThrow(() ->  new RegraNegocioException
+			  (" Usuario não cadastrado com este email!!"));
+	}
+
 }

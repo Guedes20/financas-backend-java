@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,11 +28,12 @@ public class UsuarioController {
 
 	private final UsuarioService usuarioService;
 	private final LancamentoService lancamentoService;
+	private final PasswordEncoder encoder;
 
 	@PostMapping("/autenticar")
 	public ResponseEntity autenticar(@RequestBody UsuarioDTO dto) {
 		try {
-			Usuario usuarioAutenticado = usuarioService.autenticar(dto.getEmail(), dto.getSenha());
+			Usuario usuarioAutenticado = usuarioService.autenticar(dto.getEmail(), encoder.encode(dto.getSenha()));
 			return ResponseEntity.ok(usuarioAutenticado);
 		} catch (ErroAutenticacao e) {
 			return ResponseEntity.badRequest().body(e.getMessage());
@@ -41,7 +43,13 @@ public class UsuarioController {
 	@PostMapping
 	public ResponseEntity<Object> salvar(@RequestBody UsuarioDTO dto) {
 		try {
-			Usuario usuario = Usuario.builder().nome(dto.getNome()).email(dto.getEmail()).senha(dto.getSenha()).build();
+			String senhaCodificada = encoder.encode(dto.getSenha());
+			Usuario usuario = Usuario.builder()
+					                 .nome(dto.getNome())
+					                 .email(dto.getEmail())
+					                 .senha(senhaCodificada)
+					                 .build();
+			
 			Usuario usuarioSalvo = usuarioService.salvarUsuario(usuario);
 			return new ResponseEntity<Object>(usuarioSalvo, HttpStatus.CREATED);
 		} catch (RegraNegocioException e) {
